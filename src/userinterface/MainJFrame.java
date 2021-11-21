@@ -38,6 +38,7 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         system = dB4OUtil.retrieveSystem();
         this.setSize(1680, 1050);
+       
     }
 
     /**
@@ -135,11 +136,13 @@ public class MainJFrame extends javax.swing.JFrame {
        String username = userNameJTextField.getText();
         String password = passwordField.getText();
         UserAccountDirectory userDirectory = system.getUserAccountDirectory();
+       
         if(userDirectory.authenticateUserLogin(username, password))
         {
         ArrayList<UserAccount> usersList = userDirectory.getUserAccountList();
         
         this.ua = userDirectory.authenticateUser(username, password);
+        
         if(ua.getRole().toString().equals("Business.Role.SystemAdminRole"))
         {
             logoutJButton.setEnabled(true); 
@@ -166,6 +169,7 @@ public class MainJFrame extends javax.swing.JFrame {
             crdLyt.next(container);
         }
         
+
         else if(ua.getRole().toString().equals("Business.Role.DeliverManRole"))
         {
             logoutJButton.setEnabled(true); 
